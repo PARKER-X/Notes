@@ -6,7 +6,6 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pymongo import MongoClient
 
-
 #App
 app = FastAPI()
 #Static Files
@@ -16,11 +15,20 @@ templates = Jinja2Templates(directory="templates")
 
 
 #Mongo Connection
-conn = MongoClient()
+conn = MongoClient("mongodb+srv://Parker:parker1234@notesapp.fbynitg.mongodb.net/")
 
 
 
 @app.get("/", response_class=HTMLResponse)
 async def read_item(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    docs = conn.notes.notes.find({})
+    newdocs = []
+    for doc in docs:
+        newdocs.append({
+            "id": doc["_id"],
+            "note": doc["note"]
+
+        })
+    # print(docs)
+    return templates.TemplateResponse("index.html", {"request": request,"newdocs":newdocs})
 
