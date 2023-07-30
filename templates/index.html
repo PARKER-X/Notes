@@ -49,17 +49,17 @@
       <!-- Form -->
       <div class="container">
         <h1>Start Your Notes Here! </h1>
-        <form>
+        <form  action ="/" method="POST">
             <div class="mb-3">
               <label for="title" class="form-label"> Notes here </label>
-              <input type="text" class="form-control" id="title" aria-describedby="emailHelp">
+              <input type="text" class="form-control" name="title" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
               <label for="desc" class="form-label">Notes Description</label>
-              <input type="text" class="form-control" id="desc">
+              <input type="text" class="form-control"  name="desc">
             </div>
             <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <input type="checkbox" class="form-check-input"  name="important">
               <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -67,10 +67,19 @@
       </div>
 
       <div class="container">
-        <h4> Your Notes </h4>
+
+        
+
+        
+        
         {% for doc in newdocs %}
-        <p> {{doc.note}} </p>
+        
+        
+        <p> {{doc.title}} </p>
         {% endfor %}
+
+        
+        
       </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
